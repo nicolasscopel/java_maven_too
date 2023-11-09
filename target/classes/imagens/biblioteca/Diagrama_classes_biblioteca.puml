@@ -1,0 +1,81 @@
+@startuml
+abstract Pessoa {
+* String cpf
+--
+* String nome
+* String rg
+* String logradouro
+* String cep
+* Integer numero
+* Calendar data_cadastro
+* Calendar data_nascimento
+* Integer idade    
+}
+class Aluno {
+* String matricula    
+}
+class Funcionario {
+* String numero_ctps   
+}
+class Livro {
+* Integer id
+--
+* String titulo    
+}
+class Exemplar {
+* Integer id
+--
+* Boolean situacao    
+}
+class Emprestimo {
+* Integer id
+--
+* Calendar data
+* Calendar data_devolucao
+* Calendar data_devolvido
+* Boolean situacao
+* Double valor    
+}
+
+class Parcelamento {
+
+* Integer id
+--
+* Integer numero_parcela
+* Calendar data_vencimento
+* Calendar data_pagamento
+* Double valor
+* Double valor_pago
+
+}
+
+enum Situacao {
+    * EMDIA
+    * ATRASO
+}
+
+
+class PalavrasChave {
+    * Integer id;
+    --
+    * String nome
+
+}
+
+Exemplar --> Livro 
+Emprestimo --> Exemplar
+Emprestimo --> Funcionario
+Emprestimo --> Aluno
+
+Emprestimo *--> Parcelamento
+Parcelamento --> Situacao
+
+Livro o-- PalavrasChave
+
+Pessoa <|-- Funcionario
+Pessoa <|-- Aluno
+
+
+
+
+@enduml

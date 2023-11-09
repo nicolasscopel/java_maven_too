@@ -1,0 +1,56 @@
+@startuml
+entity Pessoa {
+* String cpf
+--
+* String nome
+* String rg
+* String logradouro
+* String cep
+* Integer numero
+* Calendar data_cadastro
+* Calendar data_nascimento
+* Integer idade    
+}
+entity Aluno extends Pessoa{
+* String matricula    
+}
+entity Funcionario extends Pessoa {
+* String numero_ctps   
+}
+entity Livro {
+* Integer id
+--
+* String titulo    
+}
+entity Exemplar {
+* Integer id
+--
+* Boolean situacao    
+}
+entity Emprestimo {
+* Integer id
+--
+* Calendar data
+* Calendar data_devolucao
+* Calendar data_devolvido
+* Boolean situacao    
+}
+
+entity PalavrasChave {
+    * Integer id;
+    --
+    * String nome
+
+}
+
+Exemplar }o..|| Livro 
+Emprestimo }o..|| Exemplar
+Emprestimo }o..|| Funcionario
+Emprestimo }o..|| Aluno
+
+Livro }o..|{ PalavrasChave
+
+
+
+
+@enduml
